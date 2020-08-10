@@ -1,4 +1,3 @@
-# hello.py
 
 from flask import Flask
 
