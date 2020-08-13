@@ -25,7 +25,7 @@ def predict_user(user1, user2, tweet_text):
                              np.zeros(len(user2_embeddings))])
 
     # Train model and convert input text to embedding
-    lr = LogisticRegression().fit(embeddings, labels)
+    log_reg = LogisticRegression(solver='lbfgs', max_iter=1000)
+    log_reg.fit(embeddings, labels)
     tweet_embedding = BASILICA.embed_sentence(tweet_text, model='twitter')
-
-    return lr.predict([tweet_embedding])[0]
+    return log_reg.predict_proba(np.array([tweet_embedding]))[:,1]

@@ -43,7 +43,7 @@ def create_app():
             message = 'Cannot compare a user to themselves'
         else:
             prediction = int(predict_user(user1, user2, tweet_text)*100)
-            if prediction >= 0.50:
+            if prediction >= 50:
                 message = f'"{tweet_text}" is more likely to be said by {user1} than {user2}, with {prediction}% confidence'
             else:
                 message = f'"{tweet_text}" is more likely to be said by {user2} than {user1}, with {100-prediction}% confidence'
