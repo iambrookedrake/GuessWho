@@ -13,6 +13,8 @@ TWITTER = tweepy.API(TWITTER_AUTH)
 
 BASILICA = basilica.Connection(getenv('BASILICA_KEY'))
 
+#DEFAULT_USERS = ['nasa',]
+
 def add_user_tweepy(username):
     #'''Add a user and their tweets to database'''
     try:
@@ -116,3 +118,8 @@ def add_user_history(username):
         # If no errors happend then commit the records
         db.session.commit()
         print('Successfully saved tweets to DB!')
+
+    def update_all_users():
+        '''Update all tweets for all Users in the User table'''
+        for user in User.query.all():
+            add_user_tweepy()
