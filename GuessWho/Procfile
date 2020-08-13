@@ -1,1 +1,1 @@
-web: gunicorn "GuessWho:create_app()" -t 300
+web: gunicorn GuessWho:APP -t 300
