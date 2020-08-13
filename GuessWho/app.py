@@ -43,11 +43,15 @@ def create_app():
             message = 'Cannot compare a user to themselves'
         else:
             prediction = predict_user(user1, user2, tweet_text)
-
+                        if prediction >= 0.50:
+                message = f'"{tweet_text}" is more likely to be said by {user1} than {user2}, with {prediction}% confidence'
+            else:
+                message = f'"{tweet_text}" is more likely to be said by {user2} than {user1}, with {100-prediction}% confidence'
+'''
             message = '"{}" is more likely to be said by {} than {}'.format(
                 tweet_text, user1 if prediction else user2, user2 if prediction else user1
             )
-
+'''
         return render_template('prediction.html', title='Prediction', message=message)
 
     @app.route('/update', methods=['GET'])
